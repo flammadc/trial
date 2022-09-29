@@ -21,25 +21,54 @@ class myHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.blueGrey[100],
-        padding: const EdgeInsets.fromLTRB(30, 80, 30, 10),
-        child: Column(
-          children: [
-            myProfile(),
-            myName(),
-            myJob(),
-            myWidget(
-              title: Text("widget 1"),
+      body: ListView(
+        children: [
+          Container(
+            color: Colors.blueGrey[100],
+            padding: const EdgeInsets.fromLTRB(30, 80, 30, 10),
+            child: Column(
+              children: [
+                myProfile(),
+                SizedBox(height: 10),
+                myName(),
+                SizedBox(height: 5),
+                myJob(),
+                Divider(
+                  height: 30,
+                  indent: 50,
+                  endIndent: 50,
+                  thickness: 5,
+                ),
+                SizedBox(height: 20),
+                myWidget(
+                  image: Image.network(
+                      width: 50,
+                      "https://cdn-icons-png.flaticon.com/512/159/159832.png"),
+                  title: Text(
+                    "08123456789",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 40),
+                myWidget(
+                  image: Image.network(
+                      width: 50,
+                      "https://cdn-icons-png.flaticon.com/512/324/324100.png"),
+                  title: Text(
+                    "flamm.dev@gmail.com",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            myWidget(
-              title: Text("widget 2"),
-            ),
-            myWidget(
-              title: Text("widget 3"),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -49,7 +78,7 @@ class myProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
+      width: 300,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(999),
         child: Image.network(
@@ -65,11 +94,13 @@ class myName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "flamm",
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
+      child: Container(
+        child: Text(
+          "flamm",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -82,11 +113,13 @@ class myJob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "Frontend Developer",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
+      child: Container(
+        child: Text(
+          "Frontend Developer",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );
@@ -94,18 +127,21 @@ class myJob extends StatelessWidget {
 }
 
 class myWidget extends StatelessWidget {
+  final Widget image;
   final Widget title;
-  myWidget({required this.title});
+  myWidget({required this.image, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Card(
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
         child: Container(
           padding: const EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: Row(
             children: [
+              image,
+              SizedBox(width: 20),
               title,
             ],
           ),
